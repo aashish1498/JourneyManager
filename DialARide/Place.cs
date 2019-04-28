@@ -8,6 +8,7 @@ namespace DialARide
         public Place(string name)
         {
             Name = name;
+            // This was added on Windows
         }
     }
 }
