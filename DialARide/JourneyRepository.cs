@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Newtonsoft.Json;
+using Plugin.LocalNotifications;
 using Xamarin.Forms;
 
 namespace DialARide
 {
     public class JourneyRepository
     {
+        private const double ReminderTimeMinutes = 30;
         int index;
         public static ObservableCollection<Journey> JourneyCollection;
         public static List<Color> Colors;
@@ -59,11 +61,11 @@ namespace DialARide
                 {
                     var jsonString = kvp.Value as string;
                     var testJourney = JsonConvert.DeserializeObject<Journey>(jsonString);
+                    CrossLocalNotifications.Current.Cancel(testJourney.Id);
                     testJourney.Id = i;
                     JourneyCollection.Add(testJourney);
                     i++;
                 }
-
             }
             catch
             {
@@ -78,6 +80,10 @@ namespace DialARide
             {
                 var jsonString = JsonConvert.SerializeObject(journey);
                 Application.Current.Properties.Add(journey.Id.ToString(), jsonString);
+                if (journey.Date - TimeSpan.FromMinutes(ReminderTimeMinutes) > DateTime.Now)
+                {
+                    CrossLocalNotifications.Current.Show("Upcoming Journey!", $"You have a journey to {journey.Destination} at {journey.Time}", journey.Id, journey.Date - TimeSpan.FromMinutes(ReminderTimeMinutes));
+                }
             }
             Application.Current.SavePropertiesAsync();
         }

@@ -5,8 +5,6 @@ namespace DialARide
 {
     public class Journey
     {
-        private string dateString;
-
         public DateTime Date { get; set; }
         public string Time { get; set; }
         public string From { get; set; }

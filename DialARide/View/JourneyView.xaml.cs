@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Plugin.LocalNotifications;
 using Xamarin.Forms;
 
 namespace DialARide
@@ -25,7 +26,7 @@ namespace DialARide
             //myList.ItemsSource = journeyRepository.JourneyCollection;
         }
 
-        void Handle_Clicked(object sender, System.EventArgs e)
+        void Handle_Clicked(object sender, EventArgs e)
         {
             var button = sender as Button;
             var journey = button.BindingContext as Journey;
@@ -41,6 +42,8 @@ namespace DialARide
                 Application.Current.Properties.Remove(journey.Id.ToString());
                 Application.Current.SavePropertiesAsync();
             }
+            CrossLocalNotifications.Current.Cancel(journey.Id);
+
         }
     }
 }

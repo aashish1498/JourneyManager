@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Windows.Input;
 using Newtonsoft.Json;
+using Plugin.LocalNotifications;
 using Xamarin.Forms;
 
 namespace DialARide.ViewModel
 {
     public class AddJourneyViewModel
     {
+        private double ReminderTimeMinutes = 30;
         public ICommand AddJourneyCommand { get; set; }
 
         public DateTime JourneyDate { get; set; }
@@ -23,6 +25,7 @@ namespace DialARide.ViewModel
 
         void AddJourney()
         {
+            JourneyDate += JourneyTime;
             var ID = Application.Current.Properties.Count;
             var newJourney = new Journey(JourneyDate, JourneyTime.ToString(@"hh\:mm"), FromPlaceString, ToPlaceString, ID);
             JourneyRepository.JourneyCollection.Add(newJourney);
@@ -35,6 +38,8 @@ namespace DialARide.ViewModel
             catch
             {
             }
+
+            CrossLocalNotifications.Current.Show("Upcoming Journey!", $"You have a journey to {ToPlaceString} at {JourneyTime.ToString(@"hh\:mm")}", ID, JourneyDate - TimeSpan.FromMinutes(ReminderTimeMinutes));
             Application.Current.SavePropertiesAsync();
 
             Application.Current.MainPage.Navigation.PopAsync();
