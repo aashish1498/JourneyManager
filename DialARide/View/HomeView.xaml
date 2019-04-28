@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DialARide.HomeView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Button x:Name="ViewJourneys" Text="View Journeys" Margin="50, 50, 50, 0" Command="{Binding ViewJourneyCommand}"/>
+            <Button x:Name="AddJourney" Text="Add new journey" Margin="50, 50, 50, 0" Command="{Binding AddJourneyCommand}"/>
+            <Button x:Name="OpenSettings" Text="Settings" Margin="50, 0, 50, 100" VerticalOptions="EndAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DialARide.View.AddJourneyView">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                <Label Text="From:" Margin="20,10,0,0" />
+                <Entry Text="{Binding FromPlaceString}" WidthRequest="250" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                <Label Text="To:" Margin="20,10,0,0" />
+                <Entry Text="{Binding ToPlaceString}" WidthRequest="250" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                <Label Text="Date:" Margin="20,10,0,0" />
+                <DatePicker Date="{Binding JourneyDate}" Margin="100,0,0,0" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                <Label Text="Time:" Margin="20,10,0,0" />
+                <TimePicker Time="{Binding JourneyTime}"  Margin="120,0,0,0" />
+            </StackLayout>
+            <Button Text="Add journey" Command="{Binding AddJourneyCommand}" VerticalOptions="EndAndExpand" Margin="0,0,0,100"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

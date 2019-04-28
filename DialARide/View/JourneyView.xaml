@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:DialARide" x:Class="DialARide.JourneyView">
+    <ListView x:Name="myList" HasUnevenRows="true" SeparatorVisibility="None">
+        
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout BackgroundColor="{Binding JourneyColor}" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" Padding="0, 10, 0, 10" HorizontalOptions="CenterAndExpand">
+                            <Label Text="From: " TextColor="White" Font="20" MinimumWidthRequest="50"/>
+                            <Label Text="{Binding Path=From}" TextColor="White" Font="20" FontAttributes="Bold"/>
+                            <Label Text="To: " Margin="10,0,0,0" TextColor="White" Font="20" MinimumWidthRequest="50"/>
+                            <Label Text="{Binding Path=Destination}" TextColor="White" Font="20" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Padding="0, 10, 0, 10" HorizontalOptions="CenterAndExpand">
+                            <Label Text="On: " TextColor="White" Font="20"/>
+                            <Label Text="{Binding DateString}" TextColor="White" Font="20" FontAttributes="Bold"/>
+                            <Label Text="At: " Margin="10,0,0,0" TextColor="White" Font="20"/>
+                            <Label Text="{Binding Time}" TextColor="White" Font="20" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <Button TextColor="White" Text="Remove" Clicked="Handle_Clicked"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
