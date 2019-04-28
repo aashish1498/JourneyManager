@@ -9,6 +9,7 @@ namespace DialARide
         {
             Name = name;
             // This was added on Windows
+            // This was added on Mac
         }
     }
 }
